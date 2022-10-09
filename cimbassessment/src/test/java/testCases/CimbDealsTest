@@ -1,0 +1,73 @@
+package testCases;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
+import pageObjects.CimbdealsPageobjects;
+import utility.BaseClass;
+import utility.Keywords;
+
+
+public class CimbDealsTest extends BaseClass {
+	
+	
+	public static ExtentReports report;
+	public static ExtentTest logger;
+	
+	WebDriver driver;
+	
+	@BeforeTest
+	public void SetUp()
+	{
+		driver= BaseClass.setUpDriver(driver);
+		driver.get("https://www.cimb.com.my/en/personal/home.html");
+		driver.manage().window().maximize();
+	if(driver.getTitle().equals("Personal Banking | Savings, Credit Cards and Loans | CIMB"))
+	{
+		logger.log(LogStatus.PASS, "Navigated to the CIMB Home page");
+	}
+	else
+	{
+		logger.log(LogStatus.FAIL, "Test Failed, CIMB Home page is not loaded as expected");
+	}
+	
+	}	
+	
+	
+		
+
+//	public void TestClass(WebDriver driver)
+//	{
+//		this.driver=driver;
+//	}
+//	
+	
+	@Test
+	public  void OctoTravelVisaFlightDeals()
+	{
+		System.out.print("Entered Test method");
+		CimbdealsPageobjects.Overlaypopup(driver).click();
+		CimbdealsPageobjects.BurgerMenu(driver).click();
+		CimbdealsPageobjects.Cimbdeals(driver).click();
+		CimbdealsPageobjects.SelectCountry_Popup(driver).click();
+		CimbdealsPageobjects.Viewall_Travel_Lifestyle(driver).click();
+		CimbdealsPageobjects.Implicit_wait_time(driver);
+		Keywords.scrollDown(driver);
+		CimbdealsPageobjects.Octotravel_Dealtext(driver).click();
+		CimbdealsPageobjects.Verify_OctoTravelDetailText(driver);
+		CimbdealsPageobjects.Verify_OctotravelDiscount_DescriptionText(driver);
+		CimbdealsPageobjects.Verify_OctoTravelDiscountValid_DateTime(driver);
+		CimbdealsPageobjects.Verify_OctotravelVisaFlights_Similardeals_text(driver);
+		
+
+	
+	}
+
+}
