@@ -1,0 +1,62 @@
+package utility;
+
+import java.io.File;
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.testng.ITestContext;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
+public class BaseClass {
+	
+
+	public static WebDriver driver;
+    public static ExtentReports report;
+	public static ExtentTest logger;
+
+	
+
+		
+		public static WebDriver setUpDriver(WebDriver driver)
+		
+		{
+			 System.out.println("Entered Setup Driver");
+			//File directory = new File("..src/test/resources/Drivers/chromedriver.exe");
+		    //System.out.println(directory.getAbsolutePath());
+			//System.setProperty("webdriver.chrome.driver", "C:Selenium-java-chromedriver_win32chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "C://Users//Dell//eclipse-workspace1//cimb//src//test//resources//Drivers//chromedriver.exe");
+		    return driver=new ChromeDriver();
+		     
+			
+			
+		}
+		
+		
+		
+		@BeforeClass
+		public void setUpExtendReport()
+		{
+			
+			report = new ExtentReports(System.getProperty("user.dir")+"\\ExtentReportResults.html");
+			logger = report.startTest("CIMB Deals");
+			
+			
+			
+		}		
+		
+	
+	
+	
+	
+
+}
